@@ -118,7 +118,7 @@ public class ItemNetHandler implements IItemHandlerModifiable {
                                                      boolean simulate) {
         // Round-robin distribute to all non-Restrictive destinations
         List<ItemRoutePath> routePathsNonRestrictedCopy = new ArrayList<>(
-                network.getNetData(pipe.getPipePos(), facing, ItemRoutePathSet.NONRESTRICTED));
+                network.getNetData(pipe.getBlockPos(), facing));
         ItemStack remainsNonRestricted;
         if (routePathsNonRestrictedCopy.isEmpty()) {
             remainsNonRestricted = stack;
@@ -128,7 +128,7 @@ public class ItemNetHandler implements IItemHandlerModifiable {
         // if anything is left, distribute to Restrictive destinations
         if (!remainsNonRestricted.isEmpty()) {
             List<ItemRoutePath> routePathsRestrictiveCopy = new ArrayList<>(
-                    network.getNetData(pipe.getPipePos(), facing, ItemRoutePathSet.RESTRICTED));
+                    network.getNetData(pipe.getBlockPos(), facing));
             return distributeEqually(routePathsRestrictiveCopy, remainsNonRestricted, simulate);
         } else {
             return ItemStack.EMPTY;

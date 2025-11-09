@@ -26,14 +26,10 @@ public abstract class MaterialPipeBlock<
                                        extends PipeBlock<PipeType, NodeDataType> {
 
     public final Material material;
-    public final PipeBlockRenderer renderer;
-    public final PipeModel model;
 
-    public MaterialPipeBlock(Properties properties, PipeType pipeType, Material material, NodeDataType nodeProperties) {
-        super(properties, pipeType, nodeProperties);
+    public MaterialPipeBlock(Properties properties, PipeType pipeType, Material material, NodeDataType nodeProperties, PipeModel model) {
+        super(properties, pipeType, nodeProperties, model);
         this.material = material;
-        this.model = createPipeModel();
-        this.renderer = new PipeBlockRenderer(this.model);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -55,17 +51,6 @@ public abstract class MaterialPipeBlock<
         return index == 0 || index == 1 ? material.getMaterialRGB() : -1;
     }
 
-    @Override
-    protected PipeModel getPipeModel() {
-        return model;
-    }
-
-    @Override
-    public @Nullable PipeBlockRenderer getRenderer(BlockState state) {
-        return renderer;
-    }
-
-    protected abstract PipeModel createPipeModel();
 
     @Override
     public String getDescriptionId() {

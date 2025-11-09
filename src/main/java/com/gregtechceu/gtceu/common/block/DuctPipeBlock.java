@@ -22,7 +22,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockState;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -34,15 +33,11 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @MethodsReturnNonnullByDefault
 public class DuctPipeBlock extends PipeBlock<DuctPipeType, DuctPipeProperties> {
 
-    public final PipeBlockRenderer renderer;
-    public final PipeModel model;
     private final DuctPipeProperties properties;
 
     public DuctPipeBlock(Properties properties, DuctPipeType type) {
-        super(properties, type, new DuctPipeProperties(type.getRateMultiplier()));
+        super(properties, type, new DuctPipeProperties(type.getRateMultiplier()), type.createPipeModel());
         this.properties = new DuctPipeProperties(type.getRateMultiplier());
-        this.model = type.createPipeModel();
-        this.renderer = new PipeBlockRenderer(this.model);
     }
 
     @Override
@@ -53,16 +48,6 @@ public class DuctPipeBlock extends PipeBlock<DuctPipeType, DuctPipeProperties> {
     @Override
     public PipeNetworkType getPipeType() {
         return GTPipeNetworks.DUCT;
-    }
-
-    @Override
-    public @Nullable PipeBlockRenderer getRenderer(BlockState state) {
-        return renderer;
-    }
-
-    @Override
-    protected PipeModel getPipeModel() {
-        return model;
     }
 
     @Override

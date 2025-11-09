@@ -33,20 +33,14 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @MethodsReturnNonnullByDefault
 public class OpticalPipeBlock extends PipeBlock<OpticalPipeType, OpticalPipeProperties> {
 
-    public final PipeBlockRenderer renderer;
-    @Getter
-    public final PipeModel pipeModel;
-
     private final OpticalPipeType pipeType;
     private final OpticalPipeProperties properties;
 
     public OpticalPipeBlock(BlockBehaviour.Properties properties, @NotNull OpticalPipeType pipeType) {
-        super(properties, pipeType, OpticalPipeProperties.INSTANCE);
+        super(properties, pipeType, OpticalPipeProperties.INSTANCE, new PipeModel(pipeType.getThickness(), () -> GTCEu.id("block/pipe/pipe_optical_side"),
+                () -> GTCEu.id("block/pipe/pipe_optical_in"), null, null));
         this.pipeType = pipeType;
         this.properties = OpticalPipeProperties.INSTANCE;
-        this.pipeModel = new PipeModel(pipeType.getThickness(), () -> GTCEu.id("block/pipe/pipe_optical_side"),
-                () -> GTCEu.id("block/pipe/pipe_optical_in"), null, null);
-        this.renderer = new PipeBlockRenderer(this.pipeModel);
     }
 
     @Override
@@ -58,11 +52,6 @@ public class OpticalPipeBlock extends PipeBlock<OpticalPipeType, OpticalPipeProp
     @Override
     public BlockEntityType<? extends PipeBlockEntity<OpticalPipeType, OpticalPipeProperties>> getBlockEntityType() {
         return GTBlockEntities.OPTICAL_PIPE.get();
-    }
-
-    @Override
-    public @Nullable PipeBlockRenderer getRenderer(BlockState state) {
-        return renderer;
     }
 
     @OnlyIn(Dist.CLIENT)

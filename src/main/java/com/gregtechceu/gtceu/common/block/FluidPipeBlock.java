@@ -44,7 +44,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class FluidPipeBlock extends MaterialPipeBlock<FluidPipeType, FluidPipeProperties> {
 
     public FluidPipeBlock(Properties properties, FluidPipeType fluidPipeType, Material material) {
-        super(properties, fluidPipeType, material, material.getProperty(PropertyKey.FLUID_PIPE));
+        super(properties, fluidPipeType, material, material.getProperty(PropertyKey.FLUID_PIPE), fluidPipeType.createPipeModel(material));
     }
 
     @Override
@@ -61,11 +61,6 @@ public class FluidPipeBlock extends MaterialPipeBlock<FluidPipeType, FluidPipePr
     public boolean canPipeConnectToBlock(PipeBlockEntity<FluidPipeType, FluidPipeProperties> selfTile, Direction side,
                                          @Nullable BlockEntity tile) {
         return tile != null && tile.getCapability(ForgeCapabilities.FLUID_HANDLER, side.getOpposite()).isPresent();
-    }
-
-    @Override
-    protected PipeModel createPipeModel() {
-        return pipeType.createPipeModel(material);
     }
 
     @Override

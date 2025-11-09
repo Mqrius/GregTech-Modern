@@ -48,7 +48,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class CableBlock extends MaterialPipeBlock<WireType, WireProperties> {
 
     public CableBlock(Properties properties, WireType wireType, Material material) {
-        super(properties, wireType, material, material.getProperty(PropertyKey.WIRE));
+        super(properties, wireType, material, material.getProperty(PropertyKey.WIRE), wireType.createPipeModel(material));
     }
 
     @Override
@@ -74,11 +74,6 @@ public class CableBlock extends MaterialPipeBlock<WireType, WireProperties> {
                                          @Nullable BlockEntity tile) {
         return tile != null &&
                 tile.getCapability(GTCapability.CAPABILITY_ENERGY_CONTAINER, side.getOpposite()).isPresent();
-    }
-
-    @Override
-    protected PipeModel createPipeModel() {
-        return pipeType.createPipeModel(material);
     }
 
     @Override

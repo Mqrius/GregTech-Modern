@@ -32,12 +32,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class ItemPipeBlock extends MaterialPipeBlock<ItemPipeType, ItemPipeProperties> {
 
     public ItemPipeBlock(Properties properties, ItemPipeType itemPipeType, Material material) {
-        super(properties, itemPipeType, material, material.getProperty(PropertyKey.ITEM_PIPE));
-    }
-
-    @Override
-    protected PipeModel createPipeModel() {
-        return pipeType.createPipeModel(material);
+        super(properties, itemPipeType, material, material.getProperty(PropertyKey.ITEM_PIPE), itemPipeType.createPipeModel(material));
     }
 
     @Override

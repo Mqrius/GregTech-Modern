@@ -30,14 +30,9 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @MethodsReturnNonnullByDefault
 public class LaserPipeBlock extends PipeBlock<LaserPipeType, LaserPipeProperties> {
 
-    public final PipeBlockRenderer renderer;
-    public final PipeModel model;
-
     public LaserPipeBlock(Properties properties, LaserPipeType type) {
-        super(properties, type, LaserPipeProperties.INSTANCE);
-        this.model = new PipeModel(LaserPipeType.NORMAL.getThickness(), () -> GTCEu.id("block/pipe/pipe_laser_side"),
-                () -> GTCEu.id("block/pipe/pipe_laser_in"), null, null);
-        this.renderer = new PipeBlockRenderer(this.model);
+        super(properties, type, LaserPipeProperties.INSTANCE, new PipeModel(LaserPipeType.NORMAL.getThickness(), () -> GTCEu.id("block/pipe/pipe_laser_side"),
+                () -> GTCEu.id("block/pipe/pipe_laser_in"), null, null));
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -68,16 +63,6 @@ public class LaserPipeBlock extends PipeBlock<LaserPipeType, LaserPipeProperties
     @Override
     public BlockEntityType<? extends PipeBlockEntity<LaserPipeType, LaserPipeProperties>> getBlockEntityType() {
         return GTBlockEntities.LASER_PIPE.get();
-    }
-
-    @Override
-    public @Nullable PipeBlockRenderer getRenderer(BlockState state) {
-        return renderer;
-    }
-
-    @Override
-    protected PipeModel getPipeModel() {
-        return model;
     }
 
     @Override

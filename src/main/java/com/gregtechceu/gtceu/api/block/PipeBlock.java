@@ -71,10 +71,15 @@ public abstract class PipeBlock<PipeType extends Enum<PipeType> & IPipeType<Node
     public final PipeType pipeType;
     @Getter
     protected final NodeDataType baseProperties;
-    public PipeBlock(Properties properties, PipeType pipeType, NodeDataType nodeProperties) {
+    private final PipeBlockRenderer renderer;
+    @Getter
+    public final PipeModel pipeModel;
+    public PipeBlock(Properties properties, PipeType pipeType, NodeDataType nodeProperties, PipeModel model) {
         super(properties);
         this.pipeType = pipeType;
         this.baseProperties = pipeType.modifyProperties(nodeProperties);
+        this.renderer = new PipeBlockRenderer(model);
+        this.pipeModel = model;
         registerDefaultState(defaultBlockState().setValue(BlockStateProperties.WATERLOGGED, false));
     }
 
@@ -107,11 +112,10 @@ public abstract class PipeBlock<PipeType extends Enum<PipeType> & IPipeType<Node
 
     public abstract BlockEntityType<? extends PipeBlockEntity<PipeType, NodeDataType>> getBlockEntityType();
 
-    @Nullable
     @Override
-    public abstract PipeBlockRenderer getRenderer(BlockState state);
-
-    protected abstract PipeModel getPipeModel();
+    public PipeBlockRenderer getRenderer(BlockState state) {
+        return renderer;
+    }
 
     @Override
     public void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston) {
