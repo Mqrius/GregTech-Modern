@@ -8,10 +8,9 @@ import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.WireProperties;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import com.gregtechceu.gtceu.api.pipenet.PipeBlockEntity;
 import com.gregtechceu.gtceu.api.pipenet.PipeNetworkType;
-import com.gregtechceu.gtceu.api.item.tool.GTToolType;
-import com.gregtechceu.gtceu.client.model.PipeModel;
 import com.gregtechceu.gtceu.common.blockentity.CableBlockEntity;
 import com.gregtechceu.gtceu.common.data.GTBlockEntities;
 import com.gregtechceu.gtceu.common.data.GTDamageTypes;
@@ -48,7 +47,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class CableBlock extends MaterialPipeBlock<WireType, WireProperties> {
 
     public CableBlock(Properties properties, WireType wireType, Material material) {
-        super(properties, wireType, material, material.getProperty(PropertyKey.WIRE), wireType.createPipeModel(material));
+        super(properties, wireType, material, material.getProperty(PropertyKey.WIRE),
+                wireType.createPipeModel(material));
     }
 
     @Override

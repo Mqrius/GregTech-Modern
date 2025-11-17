@@ -6,11 +6,13 @@ import com.gregtechceu.gtceu.api.data.chemical.material.properties.FluidPipeProp
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.pipenet.IMaterialPipeType;
+import com.gregtechceu.gtceu.api.pipenet.PipeSegmentPropertyHolder;
 import com.gregtechceu.gtceu.client.model.PipeModel;
 
 import net.minecraft.resources.ResourceLocation;
 
 import lombok.Getter;
+import org.jetbrains.annotations.Nullable;
 
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 
@@ -93,5 +95,10 @@ public enum FluidPipeType implements IMaterialPipeType<FluidPipeProperties> {
                            * GTCEu.id("block/pipe/pipe_%s_in_secondary".formatted(name)) TODO enable once the textures
                            * are added
                            */);
+    }
+
+    @Override
+    public PipeSegmentPropertyHolder buildSegmentProperties(@Nullable Material material) {
+        return new PipeSegmentPropertyHolder();
     }
 }

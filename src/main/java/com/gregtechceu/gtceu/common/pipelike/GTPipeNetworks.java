@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.common.pipelike.laser.LaserPipeNet;
 import com.gregtechceu.gtceu.common.pipelike.optical.OpticalPipeNet;
 
 public class GTPipeNetworks {
+
     public static PipeNetworkType FLUID = new PipeNetworkType(GTCEu.id("fluid"), FluidPipeNet::new);
     public static PipeNetworkType ITEM = new PipeNetworkType(GTCEu.id("item_pipe"), ItemPipeNet::new);
     public static PipeNetworkType ENERGY = new PipeNetworkType(GTCEu.id("energy"), EnergyNet::new);

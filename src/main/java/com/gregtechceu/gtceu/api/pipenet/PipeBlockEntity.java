@@ -115,6 +115,7 @@ public abstract class PipeBlockEntity<PipeType extends Enum<PipeType> & IPipeTyp
     private final List<TickableSubscription> waitingToAdd;
     @Getter
     private final PipeNetworkType networkType;
+
     public PipeBlockEntity(BlockEntityType<?> type, PipeNetworkType networkType, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
         this.coverContainer = new PipeCoverContainer(this);
@@ -140,7 +141,6 @@ public abstract class PipeBlockEntity<PipeType extends Enum<PipeType> & IPipeTyp
             }
         }
     }
-
 
     //////////////////////////////////////
     // ***** Initialization ******//
@@ -187,7 +187,6 @@ public abstract class PipeBlockEntity<PipeType extends Enum<PipeType> & IPipeTyp
     public long getOffsetTimer() {
         return level == null ? offset : (level.getServer().getTickCount() + offset);
     }
-
 
     @Override
     public void clearRemoved() {
@@ -280,7 +279,8 @@ public abstract class PipeBlockEntity<PipeType extends Enum<PipeType> & IPipeTyp
         if (!attachedToNet) {
             int activeConnections = getConnections();
             boolean isActiveNode = activeConnections != 0;
-            LevelPipeNet.getLevelPipeNet((ServerLevel)level, networkType).addNode(getBlockPos(), activeConnections, isActiveNode);
+            LevelPipeNet.getLevelPipeNet((ServerLevel) level, networkType).addNode(getBlockPos(), activeConnections,
+                    isActiveNode);
         }
 
         if (!waitingToAdd.isEmpty()) {
@@ -312,7 +312,6 @@ public abstract class PipeBlockEntity<PipeType extends Enum<PipeType> & IPipeTyp
     public BlockEntity getNeighbor(Direction direction) {
         return getLevel().getBlockEntity(getBlockPos().relative(direction));
     }
-
 
     public void onNeighbourChange(BlockState state, BlockPos pos, BlockPos neighbor) {
         Direction facing = GTUtil.getFacingToNeighbor(pos, neighbor);

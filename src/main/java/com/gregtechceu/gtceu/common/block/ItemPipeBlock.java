@@ -6,7 +6,6 @@ import com.gregtechceu.gtceu.api.data.chemical.material.properties.ItemPipePrope
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.pipenet.PipeBlockEntity;
 import com.gregtechceu.gtceu.api.pipenet.PipeNetworkType;
-import com.gregtechceu.gtceu.client.model.PipeModel;
 import com.gregtechceu.gtceu.common.data.GTBlockEntities;
 import com.gregtechceu.gtceu.common.pipelike.GTPipeNetworks;
 import com.gregtechceu.gtceu.common.pipelike.item.ItemPipeType;
@@ -32,7 +31,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class ItemPipeBlock extends MaterialPipeBlock<ItemPipeType, ItemPipeProperties> {
 
     public ItemPipeBlock(Properties properties, ItemPipeType itemPipeType, Material material) {
-        super(properties, itemPipeType, material, material.getProperty(PropertyKey.ITEM_PIPE), itemPipeType.createPipeModel(material));
+        super(properties, itemPipeType, material, material.getProperty(PropertyKey.ITEM_PIPE),
+                itemPipeType.createPipeModel(material));
     }
 
     @Override

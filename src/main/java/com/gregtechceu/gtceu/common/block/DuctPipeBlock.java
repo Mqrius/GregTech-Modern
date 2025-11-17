@@ -7,10 +7,11 @@ import com.gregtechceu.gtceu.api.machine.feature.IEnvironmentalHazardCleaner;
 import com.gregtechceu.gtceu.api.machine.feature.IEnvironmentalHazardEmitter;
 import com.gregtechceu.gtceu.api.pipenet.PipeBlockEntity;
 import com.gregtechceu.gtceu.api.pipenet.PipeNetworkType;
-import com.gregtechceu.gtceu.client.model.PipeModel;
-import com.gregtechceu.gtceu.client.renderer.block.PipeBlockRenderer;
+import com.gregtechceu.gtceu.api.pipenet.property.FloatSegmentProperty;
+import com.gregtechceu.gtceu.api.pipenet.property.PipeSegmentProperty;
 import com.gregtechceu.gtceu.common.data.GTBlockEntities;
 import com.gregtechceu.gtceu.common.pipelike.GTPipeNetworks;
+import com.gregtechceu.gtceu.common.pipelike.SegmentPropertyTypes;
 import com.gregtechceu.gtceu.common.pipelike.duct.DuctPipeProperties;
 import com.gregtechceu.gtceu.common.pipelike.duct.DuctPipeType;
 
@@ -33,11 +34,9 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @MethodsReturnNonnullByDefault
 public class DuctPipeBlock extends PipeBlock<DuctPipeType, DuctPipeProperties> {
 
-    private final DuctPipeProperties properties;
-
     public DuctPipeBlock(Properties properties, DuctPipeType type) {
-        super(properties, type, new DuctPipeProperties(type.getRateMultiplier()), type.createPipeModel());
-        this.properties = new DuctPipeProperties(type.getRateMultiplier());
+        super(properties, type, new DuctPipeProperties(type.getRateMultiplier()), type.createPipeModel(),
+                type.buildSegmentProperties(null));
     }
 
     @Override
@@ -64,7 +63,7 @@ public class DuctPipeBlock extends PipeBlock<DuctPipeType, DuctPipeProperties> {
     public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> tooltip,
                                 TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
-        tooltip.add(Component.translatable("gtceu.duct_pipe.transfer_rate",
-                this.pipeType.modifyProperties(this.properties).getTransferRate()));
+        FloatSegmentProperty transferRate = defaultSegmentProperties.getProperty(SegmentPropertyTypes.TRANSFER_RATE);
+        tooltip.add(Component.translatable("gtceu.duct_pipe.transfer_rate", transferRate.getValue()));
     }
 }

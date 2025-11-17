@@ -16,13 +16,6 @@ public class DuctPipeProperties {
         this.transferRate = transferRate;
     }
 
-    /**
-     * Default property constructor.
-     */
-    public DuctPipeProperties() {
-        this(0.25f);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

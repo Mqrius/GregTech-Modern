@@ -8,7 +8,6 @@ import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.pipenet.PipeBlockEntity;
 import com.gregtechceu.gtceu.api.pipenet.PipeNetworkType;
-import com.gregtechceu.gtceu.client.model.PipeModel;
 import com.gregtechceu.gtceu.common.blockentity.FluidPipeBlockEntity;
 import com.gregtechceu.gtceu.common.data.GTBlockEntities;
 import com.gregtechceu.gtceu.common.data.GTMaterialBlocks;
@@ -44,7 +43,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class FluidPipeBlock extends MaterialPipeBlock<FluidPipeType, FluidPipeProperties> {
 
     public FluidPipeBlock(Properties properties, FluidPipeType fluidPipeType, Material material) {
-        super(properties, fluidPipeType, material, material.getProperty(PropertyKey.FLUID_PIPE), fluidPipeType.createPipeModel(material));
+        super(properties, fluidPipeType, material, material.getProperty(PropertyKey.FLUID_PIPE),
+                fluidPipeType.createPipeModel(material));
     }
 
     @Override

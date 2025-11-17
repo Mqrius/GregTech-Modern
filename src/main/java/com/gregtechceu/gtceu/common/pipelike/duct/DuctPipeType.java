@@ -1,13 +1,18 @@
 package com.gregtechceu.gtceu.common.pipelike.duct;
 
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.pipenet.IPipeType;
+import com.gregtechceu.gtceu.api.pipenet.PipeSegmentPropertyHolder;
+import com.gregtechceu.gtceu.api.pipenet.property.FloatSegmentProperty;
 import com.gregtechceu.gtceu.client.model.PipeModel;
+import com.gregtechceu.gtceu.common.pipelike.SegmentPropertyTypes;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.StringRepresentable;
 
 import lombok.Getter;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Locale;
 
@@ -54,5 +59,13 @@ public enum DuctPipeType implements IPipeType<DuctPipeProperties>, StringReprese
         return new PipeModel(thickness, () -> GTCEu.id("block/pipe/pipe_duct_side"),
                 () -> GTCEu.id("block/pipe/pipe_duct_in"),
                 null, null);
+    }
+
+    @Override
+    public PipeSegmentPropertyHolder buildSegmentProperties(@Nullable Material material) {
+        var segmentProperties = new PipeSegmentPropertyHolder();
+
+        return segmentProperties.setProperty(SegmentPropertyTypes.TRANSFER_RATE,
+                new FloatSegmentProperty(rateMultiplier));
     }
 }

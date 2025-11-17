@@ -19,7 +19,6 @@ import com.gregtechceu.gtceu.utils.GTUtil;
 
 import com.lowdragmc.lowdraglib.client.renderer.IBlockRendererProvider;
 
-import lombok.Getter;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -54,6 +53,7 @@ import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import lombok.Getter;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -74,12 +74,17 @@ public abstract class PipeBlock<PipeType extends Enum<PipeType> & IPipeType<Node
     private final PipeBlockRenderer renderer;
     @Getter
     public final PipeModel pipeModel;
-    public PipeBlock(Properties properties, PipeType pipeType, NodeDataType nodeProperties, PipeModel model) {
+
+    public final PipeSegmentPropertyHolder defaultSegmentProperties;
+
+    public PipeBlock(Properties properties, PipeType pipeType, NodeDataType nodeProperties, PipeModel model,
+                     PipeSegmentPropertyHolder defaultSegmentProperties) {
         super(properties);
         this.pipeType = pipeType;
         this.baseProperties = pipeType.modifyProperties(nodeProperties);
         this.renderer = new PipeBlockRenderer(model);
         this.pipeModel = model;
+        this.defaultSegmentProperties = defaultSegmentProperties;
         registerDefaultState(defaultBlockState().setValue(BlockStateProperties.WATERLOGGED, false));
     }
 
@@ -118,7 +123,8 @@ public abstract class PipeBlock<PipeType extends Enum<PipeType> & IPipeType<Node
     }
 
     @Override
-    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston) {
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos,
+                                boolean movedByPiston) {
         super.neighborChanged(state, level, pos, neighborBlock, neighborPos, movedByPiston);
         if (level.isClientSide()) return;
         PipeBlockEntity<PipeType, NodeDataType> pipeTile = getPipeTile(level, pos);
@@ -166,7 +172,8 @@ public abstract class PipeBlock<PipeType extends Enum<PipeType> & IPipeType<Node
         return canPipeConnectToBlock(selfTile, facing, other);
     }
 
-    public abstract boolean canPipeConnectToBlock(PipeBlockEntity<PipeType, NodeDataType> selfTile, Direction side, @Nullable BlockEntity tile);
+    public abstract boolean canPipeConnectToBlock(PipeBlockEntity<PipeType, NodeDataType> selfTile, Direction side,
+                                                  @Nullable BlockEntity tile);
 
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer,
@@ -188,7 +195,6 @@ public abstract class PipeBlock<PipeType extends Enum<PipeType> & IPipeType<Node
             }
         }
     }
-
 
     @Override
     public void destroy(LevelAccessor level, BlockPos pos, BlockState state) {

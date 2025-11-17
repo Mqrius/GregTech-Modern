@@ -122,7 +122,8 @@ public class ItemPipeBlockEntity extends PipeBlockEntity<ItemPipeType, ItemPipeP
             if (currentItemPipeNet != null && currentItemPipeNet.isValid() &&
                     currentItemPipeNet.containsNode(getBlockPos()))
                 return currentItemPipeNet; // return current net if it is still valid
-            currentItemPipeNet = LevelPipeNet.getLevelPipeNet(serverLevel, GTPipeNetworks.ITEM).getNetFromPos(getBlockPos());
+            currentItemPipeNet = LevelPipeNet.getLevelPipeNet(serverLevel, GTPipeNetworks.ITEM)
+                    .getNetFromPos(getBlockPos());
             if (currentItemPipeNet != null) {
                 this.currentItemPipeNet = new WeakReference<>(currentItemPipeNet);
                 hasCurrentNetChanged = true;

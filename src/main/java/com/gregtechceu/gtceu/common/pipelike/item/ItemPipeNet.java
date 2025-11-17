@@ -1,10 +1,9 @@
 package com.gregtechceu.gtceu.common.pipelike.item;
 
 import com.gregtechceu.gtceu.api.pipenet.LevelPipeNet;
-import com.gregtechceu.gtceu.api.pipenet.Node;
 import com.gregtechceu.gtceu.api.pipenet.PipeNet;
-
 import com.gregtechceu.gtceu.common.pipelike.GTPipeNetworks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 
@@ -31,5 +30,4 @@ public class ItemPipeNet extends PipeNet {
         }
         return data;
     }
-
 }

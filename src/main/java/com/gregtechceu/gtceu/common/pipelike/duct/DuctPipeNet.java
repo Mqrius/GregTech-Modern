@@ -1,13 +1,11 @@
 package com.gregtechceu.gtceu.common.pipelike.duct;
 
 import com.gregtechceu.gtceu.api.pipenet.LevelPipeNet;
-import com.gregtechceu.gtceu.api.pipenet.Node;
 import com.gregtechceu.gtceu.api.pipenet.PipeNet;
-
 import com.gregtechceu.gtceu.common.pipelike.GTPipeNetworks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
 
 import java.util.*;
 
@@ -31,5 +29,4 @@ public class DuctPipeNet extends PipeNet {
         }
         return data;
     }
-
 }

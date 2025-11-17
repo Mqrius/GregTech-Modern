@@ -1,10 +1,10 @@
 package com.gregtechceu.gtceu.api.block;
 
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.blockentity.IPaintable;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.pipenet.*;
 import com.gregtechceu.gtceu.client.model.PipeModel;
-import com.gregtechceu.gtceu.client.renderer.block.PipeBlockRenderer;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.color.block.BlockColor;
@@ -27,8 +27,9 @@ public abstract class MaterialPipeBlock<
 
     public final Material material;
 
-    public MaterialPipeBlock(Properties properties, PipeType pipeType, Material material, NodeDataType nodeProperties, PipeModel model) {
-        super(properties, pipeType, nodeProperties, model);
+    public MaterialPipeBlock(Properties properties, PipeType pipeType, Material material, NodeDataType nodeProperties,
+                             PipeModel model) {
+        super(properties, pipeType, nodeProperties, model, pipeType.buildSegmentProperties(material));
         this.material = material;
     }
 
@@ -50,7 +51,6 @@ public abstract class MaterialPipeBlock<
     public int tinted(BlockState blockState, @Nullable BlockAndTintGetter level, @Nullable BlockPos pos, int index) {
         return index == 0 || index == 1 ? material.getMaterialRGB() : -1;
     }
-
 
     @Override
     public String getDescriptionId() {

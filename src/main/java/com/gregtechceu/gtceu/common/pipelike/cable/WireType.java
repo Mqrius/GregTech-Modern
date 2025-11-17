@@ -3,10 +3,15 @@ package com.gregtechceu.gtceu.common.pipelike.cable;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconType;
+import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.WireProperties;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.pipenet.IMaterialPipeType;
+import com.gregtechceu.gtceu.api.pipenet.PipeSegmentPropertyHolder;
+import com.gregtechceu.gtceu.api.pipenet.property.IntSegmentProperty;
+import com.gregtechceu.gtceu.api.pipenet.property.LongSegmentProperty;
 import com.gregtechceu.gtceu.client.model.PipeModel;
+import com.gregtechceu.gtceu.common.pipelike.SegmentPropertyTypes;
 
 import net.minecraft.resources.ResourceLocation;
 
@@ -96,5 +101,27 @@ public enum WireType implements IMaterialPipeType<WireProperties> {
             model.setEndOverlayTexture(GTCEu.id("block/cable/insulation_%s".formatted(insulationLevel)));
         }
         return model;
+    }
+
+    @Override
+    public PipeSegmentPropertyHolder buildSegmentProperties(@Nullable Material material) {
+        if (material == null || material.getProperty(PropertyKey.WIRE) == null) throw new IllegalArgumentException(
+                "Attempted to build wire properties for null material or material without PropertyKey.WIRE");
+        var segmentProperties = new PipeSegmentPropertyHolder();
+        var materialProperties = material.getProperty(PropertyKey.WIRE);
+
+        int lossPerBlock = 0;
+        if (materialProperties.getLossPerBlock() == 0 && !materialProperties.isSuperconductor())
+            lossPerBlock = (int) (0.75 * lossMultiplier);
+        else lossPerBlock = materialProperties.getLossPerBlock() * lossMultiplier;
+
+        long voltage = materialProperties.getVoltage();
+        int amps = materialProperties.getAmperage() * amperage;
+
+        segmentProperties.setProperty(SegmentPropertyTypes.MAX_VOLTAGE, new LongSegmentProperty(voltage))
+                .setProperty(SegmentPropertyTypes.MAX_AMPS, new IntSegmentProperty(amps))
+                .setProperty(SegmentPropertyTypes.LOSS_PER_BLOCK, new IntSegmentProperty(lossPerBlock));
+
+        return segmentProperties;
     }
 }

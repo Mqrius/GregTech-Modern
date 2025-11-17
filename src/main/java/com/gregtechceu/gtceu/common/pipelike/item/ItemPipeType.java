@@ -6,11 +6,16 @@ import com.gregtechceu.gtceu.api.data.chemical.material.properties.ItemPipePrope
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.pipenet.IMaterialPipeType;
+import com.gregtechceu.gtceu.api.pipenet.PipeSegmentPropertyHolder;
+import com.gregtechceu.gtceu.api.pipenet.property.FloatSegmentProperty;
+import com.gregtechceu.gtceu.api.pipenet.property.IntSegmentProperty;
 import com.gregtechceu.gtceu.client.model.PipeModel;
+import com.gregtechceu.gtceu.common.pipelike.SegmentPropertyTypes;
 
 import net.minecraft.resources.ResourceLocation;
 
 import lombok.Getter;
+import org.jetbrains.annotations.Nullable;
 
 public enum ItemPipeType implements IMaterialPipeType<ItemPipeProperties> {
 
@@ -47,13 +52,6 @@ public enum ItemPipeType implements IMaterialPipeType<ItemPipeProperties> {
 
     public boolean isRestrictive() {
         return ordinal() > 3;
-    }
-
-    public String getSizeForTexture() {
-        if (!isRestrictive())
-            return name;
-        else
-            return name.substring(0, name.length() - 12);
     }
 
     @Override
@@ -93,5 +91,20 @@ public enum ItemPipeType implements IMaterialPipeType<ItemPipeProperties> {
             model.setSideOverlayTexture(GTCEu.id("block/pipe/pipe_restrictive"));
         }
         return model;
+    }
+
+    @Override
+    public PipeSegmentPropertyHolder buildSegmentProperties(@Nullable Material material) {
+        if (material == null || material.getProperty(PropertyKey.ITEM_PIPE) == null) throw new IllegalArgumentException(
+                "Attempted to build item pipe properties for null material or material without PropertyKey.ITEM_PIPE");
+        var segmentProperties = new PipeSegmentPropertyHolder();
+        var materialProperties = material.getProperty(PropertyKey.ITEM_PIPE);
+
+        segmentProperties.setProperty(SegmentPropertyTypes.PRIORITY,
+                new IntSegmentProperty((int) ((materialProperties.getPriority() * resistanceMultiplier) + 0.5)));
+        segmentProperties.setProperty(SegmentPropertyTypes.TRANSFER_RATE,
+                new FloatSegmentProperty(materialProperties.getTransferRate() * rateMultiplier));
+
+        return segmentProperties;
     }
 }

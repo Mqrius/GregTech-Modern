@@ -1,6 +1,10 @@
 package com.gregtechceu.gtceu.api.pipenet;
 
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+
 import net.minecraft.resources.ResourceLocation;
+
+import org.jetbrains.annotations.Nullable;
 
 public interface IPipeType<NodeDataType> {
 
@@ -25,4 +29,6 @@ public interface IPipeType<NodeDataType> {
      * indicate a unique type id.
      */
     ResourceLocation type();
+
+    PipeSegmentPropertyHolder buildSegmentProperties(@Nullable Material material);
 }

@@ -1,10 +1,9 @@
 package com.gregtechceu.gtceu.common.pipelike.optical;
 
 import com.gregtechceu.gtceu.api.pipenet.LevelPipeNet;
-import com.gregtechceu.gtceu.api.pipenet.Node;
 import com.gregtechceu.gtceu.api.pipenet.PipeNet;
-
 import com.gregtechceu.gtceu.common.pipelike.GTPipeNetworks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 
@@ -35,5 +34,4 @@ public class OpticalPipeNet extends PipeNet {
         NET_DATA.put(pipePos, data);
         return data;
     }
-
 }

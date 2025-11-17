@@ -16,8 +16,8 @@ import java.util.*;
 public class LevelPipeNet extends SavedData {
 
     public static LevelPipeNet getLevelPipeNet(ServerLevel sLvl, PipeNetworkType type) {
-            return sLvl.getDataStorage().computeIfAbsent(tag -> new LevelPipeNet(sLvl, type),
-                    () -> new LevelPipeNet(sLvl, type), "gt_pipenet_ " + type.networkID.getPath());
+        return sLvl.getDataStorage().computeIfAbsent(tag -> new LevelPipeNet(sLvl, type),
+                () -> new LevelPipeNet(sLvl, type), "gt_pipenet_ " + type.networkID.getPath());
     }
 
     private final ServerLevel serverLevel;
@@ -93,7 +93,9 @@ public class LevelPipeNet extends SavedData {
     }
 
     protected void addPipeNet(PipeNet pipeNet) {
-        if (pipeNet.getNetworkType() != networkType) throw new IllegalArgumentException("Attempted to add pipenet of type %s to the level network for %s".formatted(pipeNet.getNetworkType(), networkType));
+        if (pipeNet.getNetworkType() != networkType)
+            throw new IllegalArgumentException("Attempted to add pipenet of type %s to the level network for %s"
+                    .formatted(pipeNet.getNetworkType(), networkType));
         this.pipeNets.add(pipeNet);
         pipeNet.getContainedChunks().forEach(chunkPos -> addPipeNetToChunk(chunkPos, pipeNet));
         pipeNet.isValid = true;

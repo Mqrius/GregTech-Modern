@@ -46,5 +46,4 @@ public class LaserRoutePath implements IRoutePath<ILaserContainer> {
         return GTCapabilityHelper.getLaser(level, getTargetPipePos().relative(targetFacing),
                 targetFacing.getOpposite());
     }
-
 }

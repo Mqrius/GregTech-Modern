@@ -102,7 +102,7 @@ public class DuctPipeBlockEntity extends PipeBlockEntity<DuctPipeType, DuctPipeP
         if (currentPipeNet != null && currentPipeNet.isValid() && currentPipeNet.containsNode(getBlockPos())) {
             return currentPipeNet;
         }
-        LevelPipeNet worldNet = LevelPipeNet.getLevelPipeNet((ServerLevel)getLevel(), GTPipeNetworks.DUCT);
+        LevelPipeNet worldNet = LevelPipeNet.getLevelPipeNet((ServerLevel) getLevel(), GTPipeNetworks.DUCT);
         currentPipeNet = worldNet.getNetFromPos(getBlockPos());
         if (currentPipeNet != null) {
             this.currentPipeNet = new WeakReference<>(currentPipeNet);

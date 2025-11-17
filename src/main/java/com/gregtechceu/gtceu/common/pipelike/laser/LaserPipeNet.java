@@ -2,13 +2,12 @@ package com.gregtechceu.gtceu.common.pipelike.laser;
 
 import com.gregtechceu.gtceu.api.pipenet.LevelPipeNet;
 import com.gregtechceu.gtceu.api.pipenet.PipeNet;
-
 import com.gregtechceu.gtceu.common.pipelike.GTPipeNetworks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import net.minecraft.server.level.ServerLevel;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
