@@ -1,7 +1,6 @@
 package com.gregtechceu.gtceu.api.pipenet;
 
-import com.gregtechceu.gtceu.api.pipenet.property.PipeSegmentProperty;
-import com.gregtechceu.gtceu.api.pipenet.property.SegmentPropertyType;
+import com.gregtechceu.gtceu.api.pipenet.property.*;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 
@@ -17,6 +16,22 @@ public class PipeSegmentPropertyHolder {
     @SuppressWarnings("unchecked")
     public <T extends PipeSegmentProperty<?>> T getProperty(SegmentPropertyType prop) {
         return (T) properties.get(prop);
+    }
+
+    public int getIntProperty(SegmentPropertyType prop) {
+        return ((IntSegmentProperty)properties.get(prop)).getValue();
+    }
+
+    public long getLongProperty(SegmentPropertyType prop) {
+        return ((LongSegmentProperty)properties.get(prop)).getValue();
+    }
+
+    public float getFloatProperty(SegmentPropertyType prop) {
+        return ((FloatSegmentProperty)properties.get(prop)).getValue();
+    }
+
+    public boolean getBoolProperty(SegmentPropertyType prop) {
+        return ((BoolSegmentProperty)properties.get(prop)).getValue();
     }
 
     public PipeSegmentPropertyHolder copy() {

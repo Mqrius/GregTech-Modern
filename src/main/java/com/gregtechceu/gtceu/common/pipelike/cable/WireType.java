@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.properties.WirePropertie
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.pipenet.IMaterialPipeType;
 import com.gregtechceu.gtceu.api.pipenet.PipeSegmentPropertyHolder;
+import com.gregtechceu.gtceu.api.pipenet.property.BoolSegmentProperty;
 import com.gregtechceu.gtceu.api.pipenet.property.IntSegmentProperty;
 import com.gregtechceu.gtceu.api.pipenet.property.LongSegmentProperty;
 import com.gregtechceu.gtceu.client.model.PipeModel;
@@ -120,7 +121,8 @@ public enum WireType implements IMaterialPipeType<WireProperties> {
 
         segmentProperties.setProperty(SegmentPropertyTypes.MAX_VOLTAGE, new LongSegmentProperty(voltage))
                 .setProperty(SegmentPropertyTypes.MAX_AMPS, new IntSegmentProperty(amps))
-                .setProperty(SegmentPropertyTypes.LOSS_PER_BLOCK, new IntSegmentProperty(lossPerBlock));
+                .setProperty(SegmentPropertyTypes.LOSS_PER_BLOCK, new IntSegmentProperty(lossPerBlock))
+                .setProperty(SegmentPropertyTypes.IS_SUPERCONDUCTOR, new BoolSegmentProperty(materialProperties.isSuperconductor()));
 
         return segmentProperties;
     }

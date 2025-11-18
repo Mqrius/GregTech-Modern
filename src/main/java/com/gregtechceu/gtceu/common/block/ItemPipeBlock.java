@@ -6,8 +6,11 @@ import com.gregtechceu.gtceu.api.data.chemical.material.properties.ItemPipePrope
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.pipenet.PipeBlockEntity;
 import com.gregtechceu.gtceu.api.pipenet.PipeNetworkType;
+import com.gregtechceu.gtceu.api.pipenet.property.FloatSegmentProperty;
+import com.gregtechceu.gtceu.api.pipenet.property.IntSegmentProperty;
 import com.gregtechceu.gtceu.common.data.GTBlockEntities;
 import com.gregtechceu.gtceu.common.pipelike.GTPipeNetworks;
+import com.gregtechceu.gtceu.common.pipelike.SegmentPropertyTypes;
 import com.gregtechceu.gtceu.common.pipelike.item.ItemPipeType;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -44,17 +47,19 @@ public class ItemPipeBlock extends MaterialPipeBlock<ItemPipeType, ItemPipePrope
     public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> tooltip,
                                 TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
-        ItemPipeProperties properties = getBaseProperties();
 
-        if (properties.getTransferRate() % 1 != 0) {
+        FloatSegmentProperty transferRate = defaultSegmentProperties.getProperty(SegmentPropertyTypes.TRANSFER_RATE);
+        IntSegmentProperty priority = defaultSegmentProperties.getProperty(SegmentPropertyTypes.PRIORITY);
+
+        if (transferRate.getValue() % 1 != 0) {
             tooltip.add(Component.translatable("gtceu.universal.tooltip.item_transfer_rate",
-                    (int) ((properties.getTransferRate() * 64) + 0.5)));
+                    (int) ((transferRate.getValue() * 64) + 0.5)));
         } else {
             tooltip.add(Component.translatable("gtceu.universal.tooltip.item_transfer_rate_stacks",
-                    (int) properties.getTransferRate()));
+                    transferRate.getValue().intValue()));
         }
 
-        tooltip.add(Component.translatable("gtceu.item_pipe.priority", properties.getPriority()));
+        tooltip.add(Component.translatable("gtceu.item_pipe.priority", priority.getValue()));
     }
 
     @Override
