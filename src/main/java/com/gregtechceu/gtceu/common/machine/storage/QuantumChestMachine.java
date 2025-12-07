@@ -80,7 +80,7 @@ public class QuantumChestMachine extends TieredMachine implements IAutoOutputIte
     @SaveField
     @SyncToClient
     @RerenderOnChanged
-    protected Direction outputFacingItems;
+    protected @Nullable Direction outputFacingItems;
     @Getter
     @SaveField
     @SyncToClient
@@ -111,11 +111,11 @@ public class QuantumChestMachine extends TieredMachine implements IAutoOutputIte
     @Nullable
     protected TickableSubscription autoOutputSubs;
 
-    public QuantumChestMachine(IMachineBlockEntity holder, int tier, long maxAmount, Object... args) {
+    public QuantumChestMachine(IMachineBlockEntity holder, int tier, long maxAmount) {
         super(holder, tier);
         this.outputFacingItems = getFrontFacing().getOpposite();
         this.maxAmount = maxAmount;
-        this.cache = createCacheItemHandler(args);
+        this.cache = createCacheItemHandler();
         this.lockedItem = new CustomItemStackHandler();
         lockedItem.setOnContentsChanged(() -> {
             if (!isRemote()) getSyncDataHolder().markClientSyncFieldDirty("lockedItem");
@@ -126,7 +126,7 @@ public class QuantumChestMachine extends TieredMachine implements IAutoOutputIte
     // ***** Initialization ******//
     //////////////////////////////////////
 
-    protected ItemCache createCacheItemHandler(Object... args) {
+    protected ItemCache createCacheItemHandler() {
         return new ItemCache(this);
     }
 
