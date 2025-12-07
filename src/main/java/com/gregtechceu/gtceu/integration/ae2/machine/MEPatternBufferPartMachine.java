@@ -143,8 +143,8 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
     @Nullable
     protected TickableSubscription updateSubs;
 
-    public MEPatternBufferPartMachine(IMachineBlockEntity holder, Object... args) {
-        super(holder, IO.IN, args);
+    public MEPatternBufferPartMachine(IMachineBlockEntity holder) {
+        super(holder, IO.IN);
         patternInventory.setOnContentsChanged(() -> {
             if (!isRemote()) getSyncDataHolder().markClientSyncFieldDirty("patternInventory");
         });
