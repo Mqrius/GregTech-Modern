@@ -58,7 +58,7 @@ public class LargeBoilerMachine extends WorkableMultiblockMachine implements IEx
     private int steamGenerated;
 
     public LargeBoilerMachine(IMachineBlockEntity holder, int maxTemperature, int heatSpeed) {
-        super(holder);
+        super(holder, LargeBoilerRecipeLogic::new);
         this.maxTemperature = maxTemperature;
         this.heatSpeed = heatSpeed;
         this.throttle = 100;
@@ -67,11 +67,6 @@ public class LargeBoilerMachine extends WorkableMultiblockMachine implements IEx
     //////////////////////////////////////
     // ****** Recipe Logic ******//
     //////////////////////////////////////
-
-    @Override
-    protected RecipeLogic createRecipeLogic(Object... args) {
-        return new LargeBoilerMachine.LargeBoilerRecipeLogic(this);
-    }
 
     @Override
     public LargeBoilerMachine.LargeBoilerRecipeLogic getRecipeLogic() {
