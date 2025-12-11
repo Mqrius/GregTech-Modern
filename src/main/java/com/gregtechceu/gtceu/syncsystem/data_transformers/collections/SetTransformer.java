@@ -36,7 +36,7 @@ public class SetTransformer<T> implements IValueTransformer<Set<T>> {
         if (!(tag instanceof ListTag listTag)) return Set.of();
         Set<T> set = new HashSet<>();
         for (Tag elementTag : listTag) {
-            set.add(elementTransformer.deserializeNBT(elementTag, null,null));
+            set.add(elementTransformer.deserializeNBT(elementTag, null, null));
         }
         return set;
     }

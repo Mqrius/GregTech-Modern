@@ -50,7 +50,6 @@ public class SyncDataHolder {
         return tag;
     }
 
-
     @SuppressWarnings("unchecked")
     public CompoundTag serializeNBT(boolean writeClientFields, boolean fullSync) {
         Map<String, ClassSyncData.FieldSyncData> fieldsToSerialize;
@@ -63,7 +62,9 @@ public class SyncDataHolder {
         CompoundTag tag = new CompoundTag();
         for (var fieldEntry : fieldsToSerialize.entrySet()) {
 
-            if (writeClientFields && (!fullSync && !dirtySyncFields.contains(fieldEntry.getKey()) && !fieldEntry.getValue().isComplex)) continue;
+            if (writeClientFields &&
+                    (!fullSync && !dirtySyncFields.contains(fieldEntry.getKey()) && !fieldEntry.getValue().isComplex))
+                continue;
             var field = fieldEntry.getValue();
             if (field.isCustomData) {
                 try {
@@ -89,7 +90,8 @@ public class SyncDataHolder {
 
             try {
                 if (field.transformer != null) {
-                    if (writeClientFields) nbtValue = ((IValueTransformer<Object>) field.transformer).serializeClientSyncNBT(currentValue, holder);
+                    if (writeClientFields) nbtValue = ((IValueTransformer<Object>) field.transformer)
+                            .serializeClientSyncNBT(currentValue, holder);
                     else nbtValue = ((IValueTransformer<Object>) field.transformer).serializeNBT(currentValue, holder);
                 } else if (field.isComplex && currentValue instanceof ISyncManaged syncObj) {
                     nbtValue = syncObj.getSyncDataHolder().serializeNBT(writeClientFields);
@@ -101,7 +103,6 @@ public class SyncDataHolder {
                 GTCEu.LOGGER.error(e);
                 continue;
             }
-
 
             for (MethodHandle modifier : field.nbtSaveModifiers) {
                 try {
@@ -151,11 +152,13 @@ public class SyncDataHolder {
                 if (field.transformer != null) {
                     IValueTransformer<Object> transformer = (IValueTransformer<Object>) field.transformer;
                     if (transformer.mustProvideObject()) {
-                        if (readingClientFields) transformer.deserializeClientNBT(savedValue, holder, field.handle.get(holder));
+                        if (readingClientFields)
+                            transformer.deserializeClientNBT(savedValue, holder, field.handle.get(holder));
                         else transformer.deserializeNBT(savedValue, holder, field.handle.get(holder));
                     } else {
                         try {
-                            if (readingClientFields) field.handle.set(holder, transformer.deserializeClientNBT(savedValue, holder, null));
+                            if (readingClientFields)
+                                field.handle.set(holder, transformer.deserializeClientNBT(savedValue, holder, null));
                             else field.handle.set(holder, transformer.deserializeNBT(savedValue, holder, null));
                         } catch (UnsupportedOperationException e) {
                             GTCEu.LOGGER.error("Sync error: failed to perform VarHandle set: unsupported op {} {}",
@@ -176,7 +179,7 @@ public class SyncDataHolder {
                 GTCEu.LOGGER.error(e);
                 continue;
             }
-            
+
             for (MethodHandle modifier : field.nbtLoadModifiers) {
                 try {
                     modifier.invoke(holder, savedValue, readingClientFields);

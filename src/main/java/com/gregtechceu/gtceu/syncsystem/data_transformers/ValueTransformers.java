@@ -200,6 +200,5 @@ public final class ValueTransformers {
                                 Component.Serializer.fromJson(stringTag.getAsString()) : Component.empty()));
         registerInterfaceTransformer(CoverBehavior.class, new CoverBehaviorTransformer());
 
-
     }
 }

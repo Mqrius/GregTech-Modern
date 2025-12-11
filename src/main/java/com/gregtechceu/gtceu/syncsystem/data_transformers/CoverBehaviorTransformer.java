@@ -6,10 +6,12 @@ import com.gregtechceu.gtceu.api.cover.CoverBehavior;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.syncsystem.ISyncManaged;
 import com.gregtechceu.gtceu.syncsystem.IValueTransformer;
+
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
+
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
@@ -35,13 +37,15 @@ public class CoverBehaviorTransformer implements IValueTransformer<CoverBehavior
 
     @Override
     public CoverBehavior deserializeClientNBT(Tag tag, ISyncManaged holder, @Nullable CoverBehavior currentVal) {
-        if (tag instanceof CompoundTag compoundTag && holder instanceof ICoverable coverable) return deserialize(compoundTag, coverable, currentVal, true);
+        if (tag instanceof CompoundTag compoundTag && holder instanceof ICoverable coverable)
+            return deserialize(compoundTag, coverable, currentVal, true);
         return null;
     }
 
     @Override
     public CoverBehavior deserializeNBT(Tag tag, ISyncManaged holder, @Nullable CoverBehavior currentVal) {
-        if (tag instanceof CompoundTag compoundTag && holder instanceof ICoverable coverable) return deserialize(compoundTag, coverable, currentVal, false);
+        if (tag instanceof CompoundTag compoundTag && holder instanceof ICoverable coverable)
+            return deserialize(compoundTag, coverable, currentVal, false);
         return null;
     }
 
@@ -57,7 +61,8 @@ public class CoverBehaviorTransformer implements IValueTransformer<CoverBehavior
         return compound;
     }
 
-    public CoverBehavior deserialize(CompoundTag tag, ICoverable holder, @Nullable CoverBehavior cover, boolean isSync) {
+    public CoverBehavior deserialize(CompoundTag tag, ICoverable holder, @Nullable CoverBehavior cover,
+                                     boolean isSync) {
         Direction side = Direction.values()[tag.getInt("side")];
 
         if (tag.isEmpty() || tag.getString("coverType").isEmpty()) {
