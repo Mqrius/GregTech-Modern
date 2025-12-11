@@ -1,5 +1,6 @@
 package com.gregtechceu.gtceu.integration.ae2.machine;
 
+import com.gregtechceu.gtceu.api.blockentity.BlockEntityCreationInfo;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
@@ -143,8 +144,8 @@ public class MEPatternBufferPartMachine extends MEBusPartMachine
     @Nullable
     protected TickableSubscription updateSubs;
 
-    public MEPatternBufferPartMachine(IMachineBlockEntity holder) {
-        super(holder, IO.IN);
+    public MEPatternBufferPartMachine(BlockEntityCreationInfo info) {
+        super(info, IO.IN);
         patternInventory.setOnContentsChanged(() -> {
             if (!isRemote()) getSyncDataHolder().markClientSyncFieldDirty("patternInventory");
         });
