@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -860,6 +860,8 @@
       
         
       
+        
+      
     
     
     
@@ -957,6 +959,34 @@
     
   
     Generating Steam
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Gameplay/Steam/Steam-Usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using Steam
   
 
     
@@ -2144,6 +2174,8 @@
       
         
       
+        
+      
     
     
     
@@ -2244,6 +2276,34 @@
     
   
     Ambiguous Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Other-Topics/Cover-Machine-Copy-Paste-Support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adding Copy & Paste support to covers and machines
   
 
     
@@ -2928,6 +2988,8 @@
       
         
       
+        
+      
     
     
     
@@ -3187,6 +3249,34 @@
     
   
     Version 7.4.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Changes/v7.5.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version 7.5.0
   
 
     
@@ -4170,27 +4260,32 @@
   <h1>Element Creation</h1>
 
 <h2 id="element-creation">Element Creation</h2>
-<p>Elements are the base of GT materials. Registering an element WILL NOT add any items.
-To make a new element(NOTE: you can add only elements that are NOT present on the periodic table),
-write an <code>event.create()</code> call in the registry function like in the example below.
-Inside the parentheses the following parameters are introduced:</p>
-<ol>
-<li>Element Name -&gt; use '' or "" to write the element name.</li>
-<li>Proton Count(use -1 if it is not an element that will get a material).</li>
-<li>Neutron Count(use -1 if it is not an element that will get a material).</li>
-<li>Half Life Seconds(decay stuff. Use -1 if you don't need to use decay).</li>
-<li>Material to decay to(more decay stuff. Use null).</li>
-<li>Atomic Symbol(what will be displayed as in chemical formulas) -&gt; use '' or "" to write the atomic symbol.</li>
-<li>Is isotope(ex. Uranium 235 and Uranium 238. Use false if you are not making an isotope)</li>
-</ol>
-<p>When a material will be created from this element, the above properties will affect the auto-generated recipes.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can add only elements that are not yet present on the periodic table.
+For those elements, see GTElements.</p>
+</div>
+<p>Elements are the base of GT materials. Registering an element WILL NOT add any items.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">GTCEuStartupEvents</span><span class="p">.</span><span class="nx">registry</span><span class="p">(</span><span class="s1">&#39;gtceu:element&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">   </span><span class="nx">event</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;test_element&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">27</span><span class="p">,</span><span class="w"> </span><span class="mf">177</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;test&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="c1">// (1)</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">})</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">   </span><span class="nx">event</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;test_element&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="p">.</span><span class="nx">protons</span><span class="p">(</span><span class="mf">27</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="p">.</span><span class="nx">neutrons</span><span class="p">(</span><span class="mf">177</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="p">.</span><span class="nx">halfLifeSeconds</span><span class="p">(</span><span class="o">-</span><span class="mf">1</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="p">.</span><span class="nx">decayTo</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="p">.</span><span class="nx">symbol</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="p">.</span><span class="nx">isIsotope</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">})</span>
 </code></pre></div>
 <ol>
-<li>Element Name, Protons, Neutrons, Half Life Seconds, Decay To, Atomic Symbol, Is Isotope</li>
+<li><code>.create(String name)</code> -&gt;  The element name.</li>
+<li><code>.protons(int protons)</code> -&gt; Proton Count. Use <code>-1</code> if it is an element that will not get a material.</li>
+<li><code>.neutrons(int neutrons)</code> -&gt; Neutron Count. Use <code>-1</code> if it is an element that will not get a material</li>
+<li><code>.halfLifeSeconds(int seconds)</code> -&gt; Half Life Decay in Seconds. After N seconds, half of the material will have decayed. Use <code>-1</code> if your element doesn't decay.</li>
+<li><code>.decayTo(Material material)</code> -&gt; Material to decay to. Use <code>null</code> if your element doesn't decay.</li>
+<li><code>.symbol(String symbol)</code> -&gt; Atomic Symbol, which will be displayed as in chemical formulas.</li>
+<li><code>.isIsotope(boolean isotope)</code> -&gt; Whether the element is an isotope, e.g. Uranium 235 and Uranium 238.</li>
 </ol>
+<p>When a material will be created from this element, the above properties will affect the auto-generated recipes.</p>
 
 
 
@@ -4298,10 +4393,10 @@ Inside the parentheses the following parameters are introduced:</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.sections", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "toc.follow", "content.code.annotate", "content.action.view"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.sections", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "toc.follow", "content.code.annotate", "content.action.view"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

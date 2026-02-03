@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../../assets/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -860,6 +860,8 @@
       
         
       
+        
+      
     
     
     
@@ -957,6 +959,34 @@
     
   
     Generating Steam
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Gameplay/Steam/Steam-Usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using Steam
   
 
     
@@ -2088,6 +2118,8 @@
       
         
       
+        
+      
     
     
     
@@ -2188,6 +2220,34 @@
     
   
     Ambiguous Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Other-Topics/Cover-Machine-Copy-Paste-Support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adding Copy & Paste support to covers and machines
   
 
     
@@ -2952,6 +3012,8 @@
       
         
       
+        
+      
     
     
     
@@ -3211,6 +3273,34 @@
     
   
     Version 7.4.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Changes/v7.5.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version 7.5.0
   
 
     
@@ -4229,7 +4319,7 @@
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="p">.</span><span class="nx">machine</span><span class="p">((</span><span class="nx">holder</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">$LargeTurbineMachine</span><span class="p">(</span><span class="nx">holder</span><span class="p">,</span><span class="w"> </span><span class="nx">GTValues</span><span class="p">.</span><span class="nx">LuV</span><span class="p">))</span><span class="w"> </span><span class="c1">// The value shows one rotor holder tier above the recommended minimum rotor holder. The tier of rotor holder provides a boost based on the efficiency stat.</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="p">.</span><span class="nx">rotationState</span><span class="p">(</span><span class="nx">RotationState</span><span class="p">.</span><span class="nx">NON_Y_AXIS</span><span class="p">)</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="p">.</span><span class="nx">recipeTypes</span><span class="p">(</span><span class="s2">&quot;gas_turbine&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="p">.</span><span class="nx">recipeModifiers</span><span class="p">([</span><span class="nx">GTRecipeModifiers</span><span class="p">.</span><span class="nx">OC_NON_PERFECT_SUBTICK</span><span class="p">,</span><span class="w"> </span><span class="nx">GTRecipeModifiers</span><span class="p">.</span><span class="nx">BATCH_MODE</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">machine</span><span class="p">,</span><span class="w"> </span><span class="nx">recipe</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">GTRecipeModifiers</span><span class="p">.</span><span class="nx">LargeTurbineMachine</span><span class="p">(</span><span class="nx">machine</span><span class="p">,</span><span class="w"> </span><span class="nx">recipe</span><span class="p">)])</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="p">.</span><span class="nx">recipeModifiers</span><span class="p">([</span><span class="nx">GTRecipeModifiers</span><span class="p">.</span><span class="nx">OC_NON_PERFECT_SUBTICK</span><span class="p">,</span><span class="w"> </span><span class="nx">GTRecipeModifiers</span><span class="p">.</span><span class="nx">BATCH_MODE</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">machine</span><span class="p">,</span><span class="w"> </span><span class="nx">recipe</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">$LargeTurbineMachine</span><span class="p">.</span><span class="nx">recipeModifier</span><span class="p">(</span><span class="nx">machine</span><span class="p">,</span><span class="w"> </span><span class="nx">recipe</span><span class="p">)])</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="p">.</span><span class="nx">appearanceBlock</span><span class="p">(</span><span class="nx">GTBlocks</span><span class="p">.</span><span class="nx">CASING_STAINLESS_TURBINE</span><span class="p">)</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="p">.</span><span class="nx">pattern</span><span class="p">(</span><span class="nx">definition</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">FactoryBlockPattern</span><span class="p">.</span><span class="nx">start</span><span class="p">()</span>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">                </span><span class="p">.</span><span class="nx">aisle</span><span class="p">(</span><span class="s2">&quot;BBBBBBB&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;BBBCBBB&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;BBBDBBB&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;BBBCBBB&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;BBBBBBB&quot;</span><span class="p">)</span>
@@ -4398,10 +4488,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.sections", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "toc.follow", "content.code.annotate", "content.action.view"], "search": "../../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.sections", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "toc.follow", "content.code.annotate", "content.action.view"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
